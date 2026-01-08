@@ -1,5 +1,6 @@
 package costa.bruno.screenmatch;
 
+import costa.bruno.screenmatch.model.DadosEpisodio;
 import costa.bruno.screenmatch.model.DadosSerie;
 import costa.bruno.screenmatch.service.ConsumoApi;
 import costa.bruno.screenmatch.service.ConverteDados;
@@ -22,5 +23,8 @@ public class ScreenmatchApplication implements CommandLineRunner {
 		ConverteDados conversor = new ConverteDados();
 		DadosSerie dados = conversor.obterDados(json, DadosSerie.class);
 		System.out.println(dados);
+		json = consumoApi.obterDados("http://www.omdbapi.com/?t=gilmore+girls&season=1&episode=2&apikey=8e10c974");
+		DadosEpisodio dadosEpisodio = conversor.obterDados(json, DadosEpisodio.class);
+		System.out.println(dadosEpisodio);
 	}
 }
