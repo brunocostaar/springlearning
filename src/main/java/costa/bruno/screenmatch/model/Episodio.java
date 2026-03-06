@@ -1,13 +1,25 @@
 package costa.bruno.screenmatch.model;
 
+import jakarta.persistence.*;
+
 import java.time.LocalDate;
 
+@Entity
+@Table(name = "episodios")
 public class Episodio {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private Integer temporada;
     private Integer numeroEpisodio;
     private String titulo;
     private LocalDate dataLancamento;
     private Double avaliacao;
+
+    @ManyToOne
+    private Serie serie;
+
+    public Episodio(){}
 
     public Episodio(Integer temporada, DadosEpisodio dadosEpisodio) {
         this.temporada = temporada;
@@ -23,6 +35,22 @@ public class Episodio {
         } catch (NumberFormatException e) {
             this.avaliacao = null;
         }
+    }
+
+    public Serie getSerie() {
+        return serie;
+    }
+
+    public void setSerie(Serie serie) {
+        this.serie = serie;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Integer getTemporada() {
