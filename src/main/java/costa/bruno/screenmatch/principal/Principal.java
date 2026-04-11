@@ -110,7 +110,7 @@ public class Principal {
         buscarSeriePorTitulo();
         if(serieBusca.isPresent()){
             Serie serie = serieBusca.get();
-            List<Episodio> topEpisodios = repository.topEpisodiosPorSerie(serie);
+            List<Episodio> topEpisodios = repository.topEpisodiosPorSerie(serie.getId());
             topEpisodios.forEach(e ->
                     System.out.printf("Série: %s | Temporada: %s - Episódio: %s - Título: %s\n",
                             e.getSerie().getTitulo(), e.getTemporada(),
